@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import {useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Loader from '../Common/Loader';
 import './User.css';
 const CreateUser = () => {
@@ -10,7 +10,10 @@ const CreateUser = () => {
     const [user, setUser] = useState({
         name: "",
         email: "",
-        phone: ""
+        phone: "",
+        address: "",
+        role: "",
+        studentId: ""
     })
 
     const handelInput = (event) => {
@@ -35,7 +38,7 @@ const CreateUser = () => {
 
             if (response.ok) {
                 console.log('Form submitted successfully!');
-                setUser({name: "",email: "",phone: ""})
+                setUser({ name: "", email: "", phone: "", address: "", role: "", studentId: "" })
                 navigate('/show-user');
             } else {
                 console.error('Form submission failed!');
@@ -43,7 +46,7 @@ const CreateUser = () => {
 
         } catch (error) {
             setError(error.message);
-        } finally{
+        } finally {
             setIsLoading(false);
         }
     }
@@ -51,8 +54,8 @@ const CreateUser = () => {
     return (
         <div className='user-form'>
             <div className='heading'>
-            {isLoading && <Loader />}
-            {error && <p>Error: {error}</p>}
+                {isLoading && <Loader />}
+                {error && <p>Error: {error}</p>}
                 <p>User Form</p>
             </div>
             <form onSubmit={handelSubmit}>
@@ -67,6 +70,18 @@ const CreateUser = () => {
                 <div className="mb-3">
                     <label for="pwd" className="form-label">Phone</label>
                     <input type="text" className="form-control" id="phone" name="phone" value={user.phone} onChange={handelInput} />
+                </div>
+                <div className="mb-3">
+                    <label for="pwd" className="form-label">Address</label>
+                    <input type="textarea" className="form-control" id="address" name="address" value={user.address} onChange={handelInput} />
+                </div>
+                <div className="mb-3">
+                    <label for="pwd" className="form-label">Role</label>
+                    <input type="text" className="form-control" id="role" name="role" value={user.role} onChange={handelInput} />
+                </div>
+                <div className="mb-3">
+                    <label for="pwd" className="form-label">studentId</label>
+                    <input type="number" className="form-control" id="studentId" name="studentId" value={user.studentId} onChange={handelInput} />
                 </div>
                 <button type="submit" className="btn btn-primary submit-btn">Submit</button>
             </form>
