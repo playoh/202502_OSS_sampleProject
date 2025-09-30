@@ -9,7 +9,7 @@ const EditUser = () => {
   const [isLoading, setIsLoading] = useState(false);
   const { id } = useParams();
   const navigate = useNavigate();
-  const getUserApi = "http://localhost:3000/user";
+  const getUserApi = "https://68db332823ebc87faa323c4f.mockapi.io/user";
 
   useEffect(() => {
     getUser();
