@@ -27,8 +27,8 @@ const EditUser = () => {
       <table className="table table-bordered">
         <thead>
           <tr>
-            <th>Firstname</th>
-            <th>Lastname</th>
+            <th>Attribute</th>
+            <th>Information</th>
           </tr>
         </thead>
         <tbody>
