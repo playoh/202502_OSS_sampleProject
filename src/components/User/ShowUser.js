@@ -57,17 +57,23 @@ const ShowUser = () => {
               <th>Name</th>
               <th>Email</th>
               <th>Phone</th>
+              <th>Address</th>
+              <th>Role</th>
+              <th>StudentID</th>
               <th>Actions</th>
             </tr>
           </thead>
           <tbody>
             {user?.map((item, i) => {
               return (
-                <tr key={i + 1}>
+                <tr key={i + 1}>  
                   <td>{i + 1}</td>
                   <td>{item.name}</td>
                   <td>{item.email}</td>
                   <td>{item.phone}</td>
+                  <td>{item.address}</td>
+                  <td>{item.role}</td>
+                  <td>{item.studentId}</td>
                   <td>
                     <Link to={`/edit-user/${item.id}`}>
                       <i className="fa fa-pencil" aria-hidden="true"></i>

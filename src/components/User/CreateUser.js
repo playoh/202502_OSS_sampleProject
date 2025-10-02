@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import {useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Loader from '../Common/Loader';
 import './User.css';
 const CreateUser = () => {
@@ -10,7 +10,10 @@ const CreateUser = () => {
     const [user, setUser] = useState({
         name: "",
         email: "",
-        phone: ""
+        phone: "",
+        address: "",
+        role: "",
+        studentId: ""
     })
 
     const handelInput = (event) => {
@@ -22,6 +25,12 @@ const CreateUser = () => {
 
     const handelSubmit = async (event) => {
         event.preventDefault();
+
+        if (!user.name || !user.email || !user.phone || !user.address || !user.role || !user.studentId) {
+            alert("입력 값을 확인하세요.");
+            return;
+        }
+
         console.log(user)
         try {
             setIsLoading(true);
@@ -35,7 +44,7 @@ const CreateUser = () => {
 
             if (response.ok) {
                 console.log('Form submitted successfully!');
-                setUser({name: "",email: "",phone: ""})
+                setUser({ name: "", email: "", phone: "", address: "", role: "", studentId: "" })
                 navigate('/show-user');
             } else {
                 console.error('Form submission failed!');
@@ -43,7 +52,7 @@ const CreateUser = () => {
 
         } catch (error) {
             setError(error.message);
-        } finally{
+        } finally {
             setIsLoading(false);
         }
     }
@@ -51,22 +60,34 @@ const CreateUser = () => {
     return (
         <div className='user-form'>
             <div className='heading'>
-            {isLoading && <Loader />}
-            {error && <p>Error: {error}</p>}
+                {isLoading && <Loader />}
+                {error && <p>Error: {error}</p>}
                 <p>User Form</p>
             </div>
             <form onSubmit={handelSubmit}>
                 <div className="mb-3">
                     <label for="name" className="form-label">Name</label>
-                    <input type="text" className="form-control" id="name" name="name" value={user.name} onChange={handelInput} />
+                    <input type="text" className="form-control" id="name" name="name" placeholder='Enter the user name' value={user.name} onChange={handelInput} />
                 </div>
                 <div className="mb-3 mt-3">
                     <label for="email" className="form-label">Email</label>
-                    <input type="email" className="form-control" id="email" name="email" value={user.email} onChange={handelInput} />
+                    <input type="email" className="form-control" id="email" name="email" placeholder='Enter the email' value={user.email} onChange={handelInput} />
                 </div>
                 <div className="mb-3">
                     <label for="pwd" className="form-label">Phone</label>
-                    <input type="text" className="form-control" id="phone" name="phone" value={user.phone} onChange={handelInput} />
+                    <input type="text" className="form-control" id="phone" name="phone" placeholder='Enter the phone number' value={user.phone} onChange={handelInput} />
+                </div>
+                <div className="mb-3">
+                    <label for="pwd" className="form-label">Address</label>
+                    <input type="textarea" className="form-control" id="address" name="address" placeholder='Enter the address' value={user.address} onChange={handelInput} />
+                </div>
+                <div className="mb-3">
+                    <label for="pwd" className="form-label">Role</label>
+                    <input type="text" className="form-control" id="role" name="role" placeholder='Enter the role' value={user.role} onChange={handelInput} />
+                </div>
+                <div className="mb-3">
+                    <label for="pwd" className="form-label">Student ID</label>
+                    <input type="number" className="form-control" id="studentId" name="studentId" placeholder='Enter your student id' value={user.studentId} onChange={handelInput} />
                 </div>
                 <button type="submit" className="btn btn-primary submit-btn">Submit</button>
             </form>
