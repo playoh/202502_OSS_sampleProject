@@ -6,14 +6,15 @@
 .user-form{
     max-width: 500px;
     margin: 0px auto;
- 
+
     padding: 35px 35px 50px 35px;
     margin-top: 50px;
+    border-radius: 10px !important;
     background-color: #ffffff ;
 }
 
 .form-control{
-    border-radius: 0px !important;
+    border-radius: 10px !important;
 }
 .form-label{
     font-weight: 600;
