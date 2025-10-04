@@ -20,6 +20,17 @@ export default function Header() {
           <div className="collapse navbar-collapse" id="mynavbar">
             <ul className="navbar-nav ms-auto">
               <li className="nav-item">
+                <a
+                  className="nav-link"
+                  href="https://oss-05.vercel.app/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Lab_1
+                </a>
+              </li>
+
+              <li className="nav-item">
                 <Link className="nav-link" to="/">
                   Home
                 </Link>
